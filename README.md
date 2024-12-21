@@ -1,5 +1,5 @@
 # JKFLIPFLOP-USING-IF-ELSE
-
+# Date: 12/11/2024
 **AIM:** 
 
 To implement  JK flipflop using verilog and validating their functionality using their functional tables
@@ -56,6 +56,8 @@ end
 endmodule
 
 ```
+# Name: Gokul S
+# Register no: 24900980
 
 **RTL LOGIC FOR FLIPFLOPS**
 
