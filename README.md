@@ -42,18 +42,21 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **PROGRAM**
 ```
-module jk(J,K,clk,q,qbar);
-input J,K,clk;
-output reg q;
-output reg qbar;
-initial q=0;
-initial qbar=1;
-always @(posedge clk)
-begin 
-q=((J&(~q))|((~K)&q));
-qbar=~q;
-end
-endmodule
+module jk_ff (j, k, clk, rst, q);
+  input j, k, clk, rst;
+  output reg q;
+  always @(posedge clk or posedge rst) begin
+    if (rst)
+      q <= 0; // Reset the flip-flop
+    else if (j == 0 && k == 0)
+      q <= q; // No change
+    else if (j == 0 && k == 1)
+      q <= 0; // Reset
+    else if (j == 1 && k == 0)
+      q <= 1; // Set
+    else if (j == 1 && k == 1)
+      q <= ~q; // Toggle
+  end
 
 ```
 # Name: Gokul S
@@ -61,11 +64,12 @@ endmodule
 
 **RTL LOGIC FOR FLIPFLOPS**
 
-![Screenshot 2024-12-03 105900](https://github.com/user-attachments/assets/771e949d-13b4-44bc-9d08-1d258696ac39)
+![image](https://github.com/user-attachments/assets/d4f2c8c9-d11d-4c1b-bbd2-ce6aa45d69f6)
+
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
-![Screenshot 2024-12-03 103630](https://github.com/user-attachments/assets/6fb6e8f5-afd1-4f81-9c68-3b0a4df51a86)
+![image](https://github.com/user-attachments/assets/2dbc2b00-caa3-46ca-b870-08f48f128f19)
 
 **RESULTS**
 JK flipflop using verilog and validating their functionality using their functional tables are verified
